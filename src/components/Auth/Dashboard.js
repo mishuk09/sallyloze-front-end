@@ -2,7 +2,6 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import heart from '../img/heart (2).png';
-import dash from '../img/dashboard.png';
 import logout from '../img/logout.png';
 import pack from '../img/package (3).png';
 import pin from '../img/pin.png';
