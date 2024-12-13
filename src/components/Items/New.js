@@ -76,7 +76,7 @@ const New = () => {
                                         <button
                                             key={color}
                                             aria-label={`Select ${color}`}
-                                            className='relative w-8 h-8 rounded-sm border-2 border-gray hover:border-[3px] hover:border-white duration-75'
+                                            className='relative w-8 h-8 rounded-full border-2 border-gray hover:border-[2px] hover:border-gray-500 duration-75'
                                             style={{ backgroundColor: color.toLowerCase() }}
                                         />
                                     ))}
