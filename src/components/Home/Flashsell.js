@@ -1,4 +1,4 @@
-import axios from 'axios';
+import * as axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';

@@ -1,4 +1,4 @@
-import axios from 'axios';
+import * as axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import heart from '../img/heart (2).png';
@@ -276,7 +276,7 @@ export default Dashboard;
 
 
 
-import axios from 'axios';
+import * as axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

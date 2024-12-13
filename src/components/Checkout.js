@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useCart } from './CartContext';
-import axios from 'axios';
+import * as axios from 'axios';
 import am from './Footer/img/am.svg';
 import master from './Footer/img/master.svg';
 import visa from './Footer/img/visa.svg';
