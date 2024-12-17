@@ -10,7 +10,7 @@ const FAQs = () => {
 
     return (
         <div className="container mx-auto px-4 py-10">
-            <h2 className="text-3xl font-semibold mb-6">Frequently Asked Questions</h2>
+            <h2 className="text-xl text-center md:text-3xl font-semibold mb-6">Frequently Asked Questions</h2>
             <div className="space-y-4">
                 {/* FAQ 1 */}
                 <div className="p-4 border rounded-md bg-gray-50">

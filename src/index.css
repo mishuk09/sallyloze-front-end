@@ -485,7 +485,6 @@ nav input {
 
 .shop-btn {
   background-color: var(--primary-color);
-  height: 180px;
   width: full;
   color: var(--primary-font-color);
 }
@@ -529,7 +528,8 @@ nav input {
 ####          Home  section START           ####
 ####                                            ####
 ##################################################  */
-.btn {
+
+/* .btn {
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -552,7 +552,7 @@ nav input {
   font-size: var(--gsc-button-font-size);
   line-height: var(--gsc-button-line-height);
   font-weight: var(--gsc-button-font-weight);
-}
+} */
 
 .btn-2 {
   position: relative;
@@ -561,8 +561,6 @@ nav input {
   justify-content: center;
   max-width: 100%;
   min-height: 1.8rem;
-  /* margin-top: 1rem; */
-  /* padding: 0.7rem 1.8rem; */
   overflow: hidden;
   font-family: var(--gsc-button-font-family);
   font-style: var(--gsc-button-font-style);
@@ -579,31 +577,59 @@ nav input {
   font-weight: var(--gsc-button-font-weight);
 }
 
+
+@media screen and (min-width: 300px) and (max-width: 785px) {
+
+  .btn-2 {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+    min-height: 1.8rem;
+    overflow: hidden;
+    font-family: var(--gsc-button-font-family);
+    font-style: var(--gsc-button-font-style);
+    letter-spacing: var(--gsc-button-letter-spacing);
+    text-align: center;
+    text-transform: var(--gsc-button-text-transform);
+    text-decoration: none;
+    border: none;
+    border: 1px solid transparent;
+    border-radius: var(--gsc-button-radii, 0);
+    cursor: pointer;
+    font-size: 12px;
+    line-height: var(--gsc-button-line-height);
+    font-weight: var(--gsc-button-font-weight);
+  }
+}
+
+
 .filter-tittle-3 {
-  
-  max-width: 100%;
-  min-height: 1.8rem;
- 
-   font-family: var(--gsc-button-font-family);
+
+  /* max-width: 100%; */
+  /* min-height: 1.8rem; */
+
+  font-family: var(--gsc-button-font-family);
   font-style: var(--gsc-button-font-style);
   letter-spacing: var(--gsc-button-letter-spacing);
-   /* text-transform: var(--gsc-button-text-transform); */
+  /* text-transform: var(--gsc-button-text-transform); */
   /* text-decoration: none; */
   border: none;
   border: 1px solid transparent;
   border-radius: var(--gsc-button-radii, 0);
   cursor: pointer;
-  font-size: 30px;
+  /* font-size: 30px; */
   line-height: var(--gsc-button-line-height);
   font-weight: var(--gsc-button-font-weight);
 }
 
 
-.home-title {
+/* .home-title {
   font-weight: 300;
   font-family: lato;
   font-size: 2.7rem;
-}
+} */
 
 
 h1 {
@@ -642,6 +668,26 @@ h1 {
   text-overflow: ellipsis;
 }
 
+@media screen and (min-width: 300px) and (max-width: 785px) {
+
+  .product-card__title {
+    overflow: hidden;
+    color: var(--gsc-text-color-100);
+    font-family: var(--gsc-product-card-title-font-family);
+    font-style: var(--gsc-product-card-title-font-style);
+    letter-spacing: var(--gsc-product-card-title-letter-spacing);
+    text-transform: var(--gsc-product-card-title-transform);
+    font-size: 15px;
+    line-height: var(--gsc-product-card-title-line-height);
+    font-weight: 400;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
 
 
 .new-arival {
@@ -657,9 +703,6 @@ h1 {
 .flash-sell {
   background-color: var(--primary-color);
   border-radius: 5px;
-  padding: 5px;
-  height: 40px;
-  width: 40px;
   align-items: center;
   text-align: center;
 }
@@ -1617,4 +1660,36 @@ h1 {
     grid-template-columns: 1fr;
     grid-gap: 10px;
   }
+}
+
+
+
+
+
+
+
+
+/* ======================================
+*/
+
+.review-btn {
+  background-color: var(--primary-color);
+  color: var(--primary-font-color);
+}
+
+.review-btn:hover {
+  background-color: var(--primary-hover-color);
+  transition: 0.2s;
+  color: var(--primary-font-color);
+}
+
+.subscribe-btn {
+  background-color: var(--primary-color);
+  color: var(--primary-font-color);
+}
+
+.subscribe-btn:hover {
+  background-color: var(--primary-hover-color);
+  transition: 0.2s;
+  color: var(--primary-font-color);
 }

@@ -33,7 +33,7 @@ const AboutUs = () => {
             <div className="cart-head border-b h-[120px] sm:h-[220px] flex items-center text-center justify-center relative">
                 <div className="flex relative cart-h-text custom-container flex-col h-auto w-full text-center justify-center">
                     <p className="text-[20px]  sm:text-[26px] lg:text-[30px] font-bold">About Us</p>
-                    <a href="#" className="text-center   text-[12px] cart-access lg:text-[14px]">
+                    <a href="/" className="text-center   text-[12px] cart-access lg:text-[14px]">
                         <span className=" ">Home /</span> About us
                     </a>
                 </div>
@@ -52,7 +52,7 @@ const AboutUs = () => {
                         Perfect Store
                         Available to Everyone!
                     </p>
-                    <p className="text-[16px] text-gray-600 w-full mt-4 md:w-[70%]">
+                    <p className="text-[16px] text-gray-600 w-full text-justify md:text-center mt-4 md:w-[70%]">
                         Over 20 years of experience, we have meticulously curated collections that transcend fleeting trends,
                         embodying a timeless elegance that resonates with our discerning clientele.
                     </p>
@@ -62,7 +62,7 @@ const AboutUs = () => {
  
 
 
-                <div className=" grid grid-cols-3 mt-10 md:mt-20 border-b pb-10 md:pb-20">
+                <div className=" grid grid-cols-1 md:grid-cols-3 mt-10 md:mt-20 border-b pb-10 md:pb-20">
                     <div className="flex flex-col items-center text-center justify-center">
                         <Counter targetNumber={500} />
                         <p className="text-[18px] font-semibold">Products for Sale</p>

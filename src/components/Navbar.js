@@ -16,7 +16,7 @@ const Navbar = ({ toggleCart, isCartOpen }) => {
     const { cartItems } = useCart(); // Access cart items from the context
     const [showSearch, setShowSearch] = useState(false);
 
- 
+
     useEffect(() => {
         const token = localStorage.getItem('token');
         setIsAuthenticated(!!token);
@@ -33,11 +33,11 @@ const Navbar = ({ toggleCart, isCartOpen }) => {
                 <div className="container mx-auto flex justify-between items-center py-2">
                     <div className="navbar-logo">
                         <Link to='/'>
-                            <img className='w-[110px]' src={mainlogo} alt="Logo" />
+                            <img className='w-[80px] lg:w-[110px]' src={mainlogo} alt="Logo" />
                         </Link>
                     </div>
                     <div className="flex items-center lg:hidden">
-                        <div className="navbar-icons flex gap-6">
+                        {/* <div className="navbar-icons flex gap-6">
                             <div><FontAwesomeIcon size='xl' icon={faMagnifyingGlass} /></div>
                             <div onClick={toggleCart} className="cursor-pointer">
                                 <FontAwesomeIcon size='xl' icon={faCartShopping} />
@@ -47,7 +47,28 @@ const Navbar = ({ toggleCart, isCartOpen }) => {
                                     <FontAwesomeIcon size='xl' icon={faUser} />
                                 </Link>
                             </div>
+                        </div> */}
+
+                        <div className="flex gap-6">
+                            <div><img className='w-6 hidden' onClick={toggleSearch} src={search} alt="" /></div>
+                            {/* {showSearch && <SearchTab closeSearch={toggleSearch} />} */}
+                            <div onClick={toggleCart} className="cursor-pointer relative">
+                                <img className='w-6' src={cart} alt="" />
+                                {/* Display the number of items in the cart */}
+                                {cartItems.length > 0 && (
+                                    <span className="absolute w-4 bg-gray-600 top-0 right-0 text-center text-xs font-semibold text-white rounded-full px-1">
+                                        {cartItems.length}
+                                    </span>
+
+                                )}
+                            </div>
+                            <div>
+                                <Link to={isAuthenticated ? '/dashboard' : '/signin'}>
+                                    <img className='w-6' src={people} alt="" />
+                                </Link>
+                            </div>
                         </div>
+
                         <button className="ml-4" onClick={toggleMobileMenu}>
                             <FontAwesomeIcon icon={isMobileMenuOpen ? faTimes : faBars} size="xl" />
                         </button>
@@ -194,16 +215,18 @@ const Navbar = ({ toggleCart, isCartOpen }) => {
                 </div>
             </div>
             {isMobileMenuOpen && (
-                <div className="fixed inset-0 bg-black bg-opacity-75 z-50 flex flex-col items-center justify-center lg:hidden">
-                    <button className="absolute top-4 right-4 text-white" onClick={toggleMobileMenu}>
-                        <FontAwesomeIcon icon={faTimes} size="2x" />
+                <div className="fixed inset-0 p-4 bg-black bg-opacity-75 z-50 flex flex-col lg:hidden">
+                    <button className="absolute top-4 right-6 text-white" onClick={toggleMobileMenu}>
+                        <FontAwesomeIcon icon={faTimes} size="xl" />
                     </button>
-                    <ul className="flex flex-col items-center space-y-6">
-                        <li className='text-white text-xl font-semibold'><Link to='/new' onClick={toggleMobileMenu}>New</Link></li>
-                        <li className='text-white text-xl font-semibold'><Link to='/shoes' onClick={toggleMobileMenu}>Shoes</Link></li>
-                        <li className='text-white text-xl font-semibold'><Link to='/cloth' onClick={toggleMobileMenu}>Clothes</Link></li>
-                        <li className='text-white text-xl font-semibold'><Link to='/gloves' onClick={toggleMobileMenu}>Gloves</Link></li>
-                        <li className='text-white text-xl font-semibold'><Link to='/kitchen' onClick={toggleMobileMenu}>Kitchen</Link></li>
+                    <ul className="flex flex-col   space-y-4 ">
+                        <li className='text-gray-300 font-semibold'><Link to='/new' onClick={toggleMobileMenu}>🆕 New</Link></li>
+                        <li className='text-gray-300 font-semibold'><Link to='/men' onClick={toggleMobileMenu}>👔 Men</Link></li>
+                        <li className='text-gray-300 font-semibold'><Link to='/women' onClick={toggleMobileMenu}>👗 Women</Link></li>
+                        <li className='text-gray-300 font-semibold'><Link to='/Hoodie' onClick={toggleMobileMenu}>🧥 Hoodie</Link></li>
+                        <li className='text-gray-300 font-semibold'><Link to='/sweatshart' onClick={toggleMobileMenu}>👕 Sweat Shart</Link></li>
+                        <li className='text-gray-300 font-semibold'><Link to='/trouser' onClick={toggleMobileMenu}>👖 Trouser</Link></li>
+                        <li className='text-gray-300 font-semibold'><Link to='/caps' onClick={toggleMobileMenu}>🧢 Caps</Link></li>
                     </ul>
                 </div>
             )}

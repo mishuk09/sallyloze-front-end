@@ -69,24 +69,26 @@ const ProductPage = ({ toggleCart }) => {
           </div>
         ) : (
 
-          <div className="flex flex-col md:flex-row md:space-x-8">
-            <div className="md:w-1/2">
+          <div className="flex flex-col md:flex-row md:space-x-8 space-y-6 md:space-y-0">
+            {/* Product Image */}
+            <div className="w-full md:w-1/2">
               <img
-                className="w-full h-full object-cover rounded-lg shadow-md"
+                className="w-full h-64 md:h-full object-cover rounded-lg shadow-md"
                 src={product.img}
                 alt={product.title}
               />
             </div>
-            <div className="md:w-1/2 lg:sticky self-start mt-4 md:mt-0 top-0">
-              <span className='uppercase text-xs text-gray-500'>{product.category}</span>
+
+            {/* Product Details */}
+            <div className="w-full md:w-1/2 lg:sticky self-start top-0">
+              <span className="uppercase text-xs text-gray-500">{product.category}</span>
               <h1 className="text-3xl font-bold mt-2 mb-4">{product.title}</h1>
 
+              {/* Price Section */}
               <div>
-                <div>
-                  <span className="text-xl font-semibold">${product.newPrice}</span>
-                  <sup className="text-sm text-gray-800"> 99</sup>
-                  <span className="line-through ms-2 text-gray-500">${product.oldPrice}</span>
-                </div>
+                <span className="text-xl font-semibold">${product.newPrice}</span>
+                <sup className="text-sm text-gray-800"> 99</sup>
+                <span className="line-through ms-2 text-gray-500">${product.oldPrice}</span>
               </div>
 
               <p className="text-green-500 font-bold mt-2 mb-2">
@@ -95,19 +97,21 @@ const ProductPage = ({ toggleCart }) => {
 
               <StarRating rating={5} reviews={5} />
 
-              <div className='mt-6'>
+              {/* Description */}
+              <div className="mt-6">
                 <p className="text-gray-700 mb-3">{stripHtmlTags(product.description)}</p>
-                <p className='text-gray-700'>Made in Australia</p>
+                <p className="text-gray-700">Made in Australia</p>
               </div>
 
+              {/* Color Selection */}
               <div className="mb-4 mt-6">
                 <label className="block mb-2 text-sm font-semibold text-gray-700">Color</label>
-                <div className="flex mt-2 space-x-2">
+                <div className="flex flex-wrap gap-2">
                   {product.color.map(color => (
                     <button
                       key={color}
                       aria-label={`Select ${color}`}
-                      className={`relative w-10 h-10 rounded-sm border-2 border-gray hover:border-[3px] hover:border-white duration-75 ${selectedColor === color ? 'ring-1 ring-black' : ''}`}
+                      className={`relative w-10 h-10 rounded-sm border-2 hover:border-[3px] hover:border-white duration-75 ${selectedColor === color ? 'ring-1 ring-black' : ''}`}
                       style={{ backgroundColor: color.toLowerCase() }}
                       onClick={() => setSelectedColor(color)}
                     >
@@ -119,9 +123,10 @@ const ProductPage = ({ toggleCart }) => {
                 </div>
               </div>
 
+              {/* Size Selection */}
               <div className="mb-4 mt-6">
                 <label className="block mb-2 text-sm font-semibold text-gray-700">Size</label>
-                <div className="flex space-x-2">
+                <div className="flex flex-wrap gap-2">
                   {product.size.map(size => (
                     <button
                       key={size}
@@ -135,6 +140,7 @@ const ProductPage = ({ toggleCart }) => {
                 </div>
               </div>
 
+              {/* Quantity Selector */}
               <div className="mb-4 items-center">
                 <label className="text-sm font-semibold text-gray-700 mr-4">Quantity</label>
                 <div className="flex mt-3 items-center">
@@ -156,14 +162,16 @@ const ProductPage = ({ toggleCart }) => {
                 </div>
               </div>
 
+              {/* Add to Cart Button */}
               <button
-                className="add-to-cart mt-10 text-white w-full px-6 py-2 rounded-lg shadow-md transition duration-300"
+                className="add-to-cart mt-10 text-white w-full px-6 py-2 rounded-lg shadow-md bg-blue-600 hover:bg-blue-700 transition duration-300"
                 onClick={handleAddToCart}
               >
                 Add to Cart
               </button>
             </div>
           </div>
+
 
         )
       }

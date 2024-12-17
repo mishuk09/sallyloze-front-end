@@ -1,6 +1,6 @@
 import * as axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import heart from '../img/heart (2).png';
 import logout from '../img/logout.png';
 import pack from '../img/package (3).png';
@@ -11,6 +11,8 @@ const Dashboard = () => {
     const navigate = useNavigate();
     const [activeTab, setActiveTab] = useState("tab1");
     const [editFormVisible, setEditFormVisible] = useState(null);
+    const [wishlist, setWishlist] = useState([]); // To store filtered wishlist products
+    const [loading, setLoading] = useState(true); // Loading state
     const [order, setOrder] = useState([]);
     const [profile, setProfile] = useState({
         firstName: '',
@@ -24,6 +26,33 @@ const Dashboard = () => {
     });
 
 
+
+    // Fetch wishlist items by ID
+    useEffect(() => {
+        const storedItems = JSON.parse(localStorage.getItem('wishlist')) || {}; // Retrieve wishlist object from localStorage
+
+        // Get all the keys (product IDs) from the object
+        const productIds = Object.keys(storedItems);
+
+        if (productIds.length > 0) {
+            // Fetch all posts (products)
+            axios.get('https://sneakers-backend-1.onrender.com/posts/')
+                .then(response => {
+                    // Filter products based on the IDs stored in localStorage
+                    const filteredPosts = response.data.filter(product =>
+                        productIds.includes(product._id) // Check if product ID is in the stored productIds array
+                    );
+                    setWishlist(filteredPosts); // Update the wishlist state with the filtered posts
+                    setLoading(false); // Set loading to false once data is fetched
+                })
+                .catch(error => {
+                    console.error(error);
+                    setLoading(false); // Set loading to false in case of error
+                });
+        } else {
+            setLoading(false); // No items in wishlist
+        }
+    }, []);
 
 
     //Fetch order
@@ -130,6 +159,9 @@ const Dashboard = () => {
         navigate('/signin');
     };
 
+    if (loading) {
+        return <div>Loading...</div>; // You can use a loading skeleton or any other placeholder
+    }
     return (
         <div className="min-h-screen flex flex-col   px-4">
 
@@ -139,6 +171,8 @@ const Dashboard = () => {
                         <p className="text-[20px] sm:text-[26px] lg:text-[30px] font-bold">My Account</p>
                         <span className="text-center text-[12px] cart-access lg:text-[14px]">
                             <span>Home /</span> Account
+                            {wishlist.length}
+
                         </span>
                     </div>
                     <div className="overlay1"></div>
@@ -513,7 +547,60 @@ const Dashboard = () => {
                         )}
                         {activeTab === "tab4" && (
                             <div className="tab">
-                                <p>Your Wishlist content goes here</p>
+                                <h2>Your Wishlist</h2>
+                                {wishlist.length === 0 ? (
+                                    <p>Your wishlist is empty.</p>
+                                ) : (
+                                    <div className="container grid grid-cols-2    sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 mx-auto px-4">
+                                        {wishlist.map(product => (
+                                            <div key={product._id} className="relative bg-white rounded-sm shadow-md">
+                                                <Link to={`/product/${product._id}`}>
+                                                    <div className="overflow-hidden rounded-sm">
+                                                        <img
+                                                            src={product.img}
+                                                            alt={product.title}
+                                                            className="w-full h-[200px] md:h-[250px] lg:h-[200px] object-cover transform hover:scale-110 transition-transform duration-300"
+                                                        />
+                                                        <span className="absolute top-2 left-2 bg-gray-200 text-red-400 text-xs px-2 py-1 rounded">
+                                                            Sale
+                                                        </span>
+                                                    </div>
+                                                </Link>
+                                                {/* <button
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        handleWishlist(product._id);
+                                                    }}
+                                                    className="absolute top-2 right-2 p-2"
+                                                >
+                                                    <FontAwesomeIcon
+                                                        className={`w-4 ${wishlist[product._id] ? 'text-red-600' : 'text-gray-400'}`}
+                                                        icon={faHeart}
+                                                    />
+                                                </button> */}
+                                                <div className="ps-2 pb-1">
+                                                    <div className="flex space-x-1 pt-2">
+                                                        {product.color.map(color => (
+                                                            <button
+                                                                key={color}
+                                                                aria-label={`Select ${color}`}
+                                                                className="relative w-6 h-6 md:w-8 md:h-8 rounded-full border-2 border-gray hover:border-gray-500 duration-75"
+                                                                style={{ backgroundColor: color.toLowerCase() }}
+                                                            />
+                                                        ))}
+                                                    </div>
+                                                    <h2 className=" lg:text-lg product-card__title text-start pt-1 lg:pt-3 font-semibold text-gray-900">
+                                                        {product.title}
+                                                    </h2>
+                                                    <div>
+                                                        <span className=" lg:text-xl font-semibold">${product.newPrice}</span>
+                                                        <sup className="text-sm text-gray-800">99</sup>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                )}
                             </div>
                         )}
                     </div>

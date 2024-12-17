@@ -29,7 +29,7 @@ const Popup = () => {
     };
 
     return (
-        <>
+        <div className='hidden md:flex'>
             {isVisible && (
                 <div className='top-0 left-0 right-0 bg-black text-sm text-center text-white h-10 w-full z-50 flex justify-center items-center'>
                     <section id="shopify-section-sections--17125168906293__announcement-bar" className="shopify-section">
@@ -55,7 +55,7 @@ const Popup = () => {
                 </div>
 
             )}
-        </>
+        </div>
     );
 };
 

@@ -5,6 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import filter from '../img/filter.svg';
 import closefilter from '../img/close-outline.svg';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';  // Don't forget to import the CSS
 
 const Collection = () => {
     const [posts, setPosts] = useState([]);
@@ -17,6 +19,7 @@ const Collection = () => {
         type: [],
         size: []
     });
+    const [loading, setLoading] = useState(true); // Added loading state
 
     // Fetch posts on mount
     useEffect(() => {
@@ -24,8 +27,12 @@ const Collection = () => {
             .then(response => {
                 setPosts(response.data);
                 setFilteredPosts(response.data); // Initial set to show all products
+                setLoading(false); // Set loading to false after data is fetched
             })
-            .catch(error => console.log(error));
+            .catch(error => {
+                console.log(error);
+                setLoading(false); // Set loading to false if there's an error
+            });
     }, []);
 
     const toggleFilterPanel = () => {
@@ -90,9 +97,9 @@ const Collection = () => {
 
     return (
         <div className="container collection pb-10">
-            <div className="text-center pt-10">
-                <p className=" text-start pl-4">Collections / Weekend Edit</p>
-                <h1 className="text-3xl filter-tittle-3  font-bold mt-2 text-start pl-4">Weekend Edit</h1>
+            <div className="text-center pt-6 pb-4 lg:pt-10">
+                <p className=" text-center lg:text-start text-sm lg:text-base pl-4">Collections / Weekend Edit</p>
+                {/* <h1 className="text-xl lg:text-3xl filter-tittle-3  font-bold mt-2 text-center lg:text-start pl-4">Weekend Edit</h1> */}
                 <div className="flex justify-start gap-8 mt-2 mb-2 pl-4">
                     <button
                         onClick={toggleFilterPanel}
@@ -114,8 +121,18 @@ const Collection = () => {
             </div>
             <div className="flex">
                 {filterOpen && (
-                    <div className="w-64 bg-white p-6 rounded-lg shadow-lg  h-full">
-                        {/* <h2 className="text-2xl font-semibold text-gray-800 mb-6">Filter Options</h2> */}
+                    // <div className="w-64 bg-white p-6 rounded-lg shadow-lg  h-full">
+                    <div
+                        className={`fixed top-0 left-0 h-full bg-white p-6 rounded-lg shadow-lg transition-transform transform 
+                        ${filterOpen ? 'translate-x-0' : '-translate-x-full'} z-50 sm:relative sm:translate-x-0 sm:block sm:w-64 lg:w-64`}
+                    >
+
+                        <button
+                            onClick={toggleFilterPanel}
+                            className="absolute top-3 text-sm right-3 text-gray-500 hover:text-gray-700  font-semibold"
+                        >
+                            ✕
+                        </button>
 
                         {/* Color Filter */}
                         <div className="mb-6">
@@ -197,14 +214,31 @@ const Collection = () => {
                     </div>
 
                 )}
-                <div className="container grid grid-cols-4 h-full  mx-auto gap-6 px-4">
-                    {filteredPosts.length > 0 ? (
+                <div className="container grid grid-cols-2  h-full  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 mx-auto px-4">
+                    {loading ? (
+                        // Display skeleton loading when data is being fetched
+                        Array(15).fill(0).map((_, index) => (
+                            <div key={index} className="relative h-full bg-white rounded-sm shadow-md">
+                                <Skeleton height={200} width="100%" />
+                                <div className="ps-2 pb-1">
+                                    <Skeleton height={20} width="70%" />
+                                    <Skeleton height={15} width="50%" />
+                                </div>
+                            </div>
+                        ))
+                    ) : filteredPosts.length > 0 ? (
                         filteredPosts.map(product => (
                             <div key={product._id} className="relative bg-white rounded-sm shadow-md">
                                 <Link to={`/product/${product._id}`}>
                                     <div className="overflow-hidden rounded-sm">
-                                        <img src={product.img} alt={product.title} className="w-full h-[350px] object-cover transform hover:scale-110 transition-transform duration-300" />
-                                        <span className="absolute top-2 left-2 bg-gray-200 text-red-400 text-xs px-2 py-1 rounded">Sale</span>
+                                        <img
+                                            src={product.img}
+                                            alt={product.title}
+                                            className="w-full h-[200px] md:h-[250px] lg:h-[350px] object-cover transform hover:scale-110 transition-transform duration-300"
+                                        />
+                                        <span className="absolute top-2 left-2 bg-gray-200 text-red-400 text-xs px-2 py-1 rounded">
+                                            Sale
+                                        </span>
                                     </div>
                                 </Link>
                                 <button
@@ -214,31 +248,34 @@ const Collection = () => {
                                     }}
                                     className="absolute top-2 right-2 p-2"
                                 >
-                                    <FontAwesomeIcon className={`w-4 ${wishlist[product._id] ? 'text-red-600' : 'text-gray-400'}`} icon={faHeart} />
+                                    <FontAwesomeIcon
+                                        className={`w-4 ${wishlist[product._id] ? 'text-red-600' : 'text-gray-400'}`}
+                                        icon={faHeart}
+                                    />
                                 </button>
-                                <div className="ps-2">
+                                <div className="ps-2 pb-1">
                                     <div className="flex space-x-1 pt-2">
                                         {product.color.map(color => (
                                             <button
                                                 key={color}
                                                 aria-label={`Select ${color}`}
-                                                className='relative w-8 h-8 rounded-full border-2 border-gray hover:border-[2px] hover:border-gray-500 duration-75'
+                                                className="relative w-6 h-6 md:w-8 md:h-8 rounded-full border-2 border-gray hover:border-gray-500 duration-75"
                                                 style={{ backgroundColor: color.toLowerCase() }}
                                             />
                                         ))}
                                     </div>
-                                    <h2 className="text-lg product-card__title text-start pt-3 font-semibold text-gray-900">
+                                    <h2 className=" lg:text-lg product-card__title text-start pt-1 lg:pt-3 font-semibold text-gray-900">
                                         {product.title}
                                     </h2>
                                     <div>
-                                        <span className="text-xl font-semibold">${product.newPrice}</span>
-                                        <sup className="text-sm text-gray-800"> 99</sup> {/* Optional: you can add a label or just keep the sup with price */}
+                                        <span className=" lg:text-xl font-semibold">${product.newPrice}</span>
+                                        <sup className="text-sm text-gray-800">99</sup>
                                     </div>
                                 </div>
                             </div>
                         ))
                     ) : (
-                        <p className="text-center col-span-4">No products found with the selected filters.</p>
+                        <p className="text-center col-span-full">No products found with the selected filters.</p>
                     )}
                 </div>
             </div>

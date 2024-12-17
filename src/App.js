@@ -28,6 +28,7 @@ import Hoodie from './components/Items/Hoodie';
 import Sweatshart from './components/Items/Sweatshart';
 import Trouser from './components/Items/Trouser';
 import Caps from './components/Items/Caps';
+import Newsletter from './components/Newsletter/Newsletter';
 
 function App() {
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -40,6 +41,7 @@ function App() {
       <CartProvider>
         <Popup />
         <Navbar toggleCart={toggleCart} isCartOpen={isCartOpen} />
+        <Newsletter />
 
         <Routes>
           <Route path='/' element={<Home />} />
