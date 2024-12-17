@@ -662,7 +662,7 @@ h1 {
   line-height: var(--gsc-product-card-title-line-height);
   font-weight: 400;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;

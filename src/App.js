@@ -2,7 +2,7 @@ import Navbar from './components/Navbar';
 import { Route, Routes } from 'react-router';
 import SignIn from './components/Auth/SignIn';
 import New from './components/Items/New';
-import Cloth from './components/Items/Cloth';
+import Cloth from './components/Items/Men';
 import Dashboard from './components/Auth/Dashboard';
 import ProductPage from './components/ProductPage/ProductPage';
 import Cart from './components/Cart';
@@ -47,11 +47,11 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/outlet-store' element={<Outletstore />} />
           <Route path='/collection' element={<Collection />} />
-          <Route path='/new' element={<New />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
           {/* <Route path="/orders" element={<Orders />} /> Corrected route for Orders component */}
 
+          <Route path='/new' element={<New />} />
           <Route path='/men' element={<Cloth />} />
           <Route path='/women' element={<Women />} />
           <Route path='/hoodie' element={<Hoodie />} />
