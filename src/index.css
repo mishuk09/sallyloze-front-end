@@ -1693,3 +1693,16 @@ h1 {
   transition: 0.2s;
   color: var(--primary-font-color);
 }
+
+
+
+/* =============================
+ */
+
+
+
+.react-multiple-carousel__arrow {
+  z-index: 10 !important;
+ 
+  
+}
