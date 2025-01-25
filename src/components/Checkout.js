@@ -84,7 +84,7 @@ const Checkout = () => {
         };
 
         try {
-            const response = await axios.post('https://sneakers-backend-1.onrender.com/item/orders', orderData);
+            const response = await axios.post('http://localhost:5000/item/orders', orderData);
             console.log(response.data);
             setFormData({
                 fullName: '',

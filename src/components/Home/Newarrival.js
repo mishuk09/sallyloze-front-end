@@ -13,7 +13,7 @@ const NewArrivals = () => {
     const [loading, setLoading] = useState(true); // State for loading status
 
     useEffect(() => {
-        axios.get('https://sneakers-backend-1.onrender.com/posts')
+        axios.get('http://localhost:5000/posts')
             .then(response => {
                 setPosts(response.data.slice(0, 12));
                 setLoading(false); // Set loading to false once data is fetched

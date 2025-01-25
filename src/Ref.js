@@ -46,7 +46,7 @@ const Dashboard = () => {
             }
 
             try {
-                const response = await axios.get('https://sneakers-backend-1.onrender.com/dashboard', {
+                const response = await axios.get('http://localhost:5000/dashboard', {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
@@ -76,7 +76,7 @@ const Dashboard = () => {
         const token = localStorage.getItem('token');
         try {
             await axios.put(
-                'https://sneakers-backend-1.onrender.com/update-profile',
+                'http://localhost:5000/update-profile',
                 {
                     firstName: profile.firstName,
                     lastName: profile.lastName,
@@ -291,7 +291,7 @@ const Collection = () => {
 
     // Fetch posts on mount
     useEffect(() => {
-        axios.get('https://sneakers-backend-1.onrender.com/posts')
+        axios.get('http://localhost:5000/posts')
             .then(response => {
                 setPosts(response.data);
                 setFilteredPosts(response.data); // Initial set to show all products
@@ -528,7 +528,7 @@ const Navbar = ({ toggleCart, isCartOpen }) => {
                             <FontAwesomeIcon icon={isMobileMenuOpen ? faTimes : faBars} size="xl" />
                         </button>
                     </div>
-                    
+
                     <div className="hidden lg:flex lg:items-center lg:space-x-4 md:justify-center">
                         <div className="flex gap-6">
                             <div><img className=' w-6' onClick={toggleSearch} src={search} alt="" /></div>
@@ -629,7 +629,7 @@ const Collection = () => {
 
     // Fetch posts on mount
     useEffect(() => {
-        axios.get('https://sneakers-backend-1.onrender.com/posts')
+        axios.get('http://localhost:5000/posts')
             .then(response => {
                 setPosts(response.data);
                 setFilteredPosts(response.data); // Initial set to show all products
@@ -920,7 +920,7 @@ const New = () => {
 
     // Fetch posts on mount
     useEffect(() => {
-        axios.get('https://sneakers-backend-1.onrender.com/posts')
+        axios.get('http://localhost:5000/posts')
             .then(response => {
                 setPosts(response.data);
                 setFilteredPosts(response.data); // Initial set to show all products

@@ -23,7 +23,7 @@ const Format = ({ category, breadcrumbText, pageTitle }) => {
 
     // Fetch posts based on category prop
     useEffect(() => {
-        axios.get('https://sneakers-backend-1.onrender.com/posts')
+        axios.get('http://localhost:5000/posts')
             .then(response => {
                 const filteredPosts = response.data.filter(post => post.category === category);
                 setPosts(filteredPosts);
@@ -237,7 +237,7 @@ const Format = ({ category, breadcrumbText, pageTitle }) => {
                                         <img
                                             src={product.img}
                                             alt={product.title}
-                                            className="w-full  h-[200px] md:h-[250px] lg:h-[250px] object-cover transform hover:scale-110 transition-transform duration-300"
+                                            className="w-full  h-[200px] md:h-[250px] lg:h-[300px] object-cover transform hover:scale-110 transition-transform duration-300"
                                         />
                                         <span className="absolute top-2 left-2 bg-gray-200 text-red-400 text-xs px-2 py-1 rounded">
                                             Sale
