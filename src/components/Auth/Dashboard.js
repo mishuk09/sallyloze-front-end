@@ -36,7 +36,7 @@ const Dashboard = () => {
 
         if (productIds.length > 0) {
             // Fetch all posts (products)
-            axios.get('http://localhost:5000/posts/')
+            axios.get('https://sneakers-backend-1.onrender.com/posts/')
                 .then(response => {
                     // Filter products based on the IDs stored in localStorage
                     const filteredPosts = response.data.filter(product =>
@@ -58,7 +58,7 @@ const Dashboard = () => {
     //Fetch order
     useEffect(() => {
         const storedEmail = localStorage.getItem('email'); // Retrieve email from local storage
-        axios.get('http://localhost:5000/item/orders/')
+        axios.get('https://sneakers-backend-1.onrender.com/item/orders/')
             .then(response => {
                 const filteredPosts = response.data.filter(orders => orders.email === storedEmail); // Compare with stored email
                 setOrder(filteredPosts);
@@ -95,7 +95,7 @@ const Dashboard = () => {
             }
 
             try {
-                const response = await axios.get('http://localhost:5000/dashboard', {
+                const response = await axios.get('https://sneakers-backend-1.onrender.com/dashboard', {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
@@ -125,7 +125,7 @@ const Dashboard = () => {
         const token = localStorage.getItem('token');
         try {
             await axios.put(
-                'http://localhost:5000/update-profile',
+                'https://sneakers-backend-1.onrender.com/update-profile',
                 {
                     firstName: profile.firstName,
                     lastName: profile.lastName,

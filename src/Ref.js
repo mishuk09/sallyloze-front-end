@@ -46,7 +46,7 @@ const Dashboard = () => {
             }
 
             try {
-                const response = await axios.get('http://localhost:5000/dashboard', {
+                const response = await axios.get('https://sneakers-backend-1.onrender.com/dashboard', {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
@@ -76,7 +76,7 @@ const Dashboard = () => {
         const token = localStorage.getItem('token');
         try {
             await axios.put(
-                'http://localhost:5000/update-profile',
+                'https://sneakers-backend-1.onrender.com/update-profile',
                 {
                     firstName: profile.firstName,
                     lastName: profile.lastName,
@@ -291,7 +291,7 @@ const Collection = () => {
 
     // Fetch posts on mount
     useEffect(() => {
-        axios.get('http://localhost:5000/posts')
+        axios.get('https://sneakers-backend-1.onrender.com/posts')
             .then(response => {
                 setPosts(response.data);
                 setFilteredPosts(response.data); // Initial set to show all products
@@ -629,7 +629,7 @@ const Collection = () => {
 
     // Fetch posts on mount
     useEffect(() => {
-        axios.get('http://localhost:5000/posts')
+        axios.get('https://sneakers-backend-1.onrender.com/posts')
             .then(response => {
                 setPosts(response.data);
                 setFilteredPosts(response.data); // Initial set to show all products
@@ -920,7 +920,7 @@ const New = () => {
 
     // Fetch posts on mount
     useEffect(() => {
-        axios.get('http://localhost:5000/posts')
+        axios.get('https://sneakers-backend-1.onrender.com/posts')
             .then(response => {
                 setPosts(response.data);
                 setFilteredPosts(response.data); // Initial set to show all products
