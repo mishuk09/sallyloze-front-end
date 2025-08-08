@@ -37,17 +37,7 @@ const Navbar = ({ toggleCart, isCartOpen }) => {
                         </Link>
                     </div>
                     <div className="flex items-center lg:hidden">
-                        {/* <div className="navbar-icons flex gap-6">
-                            <div><FontAwesomeIcon size='xl' icon={faMagnifyingGlass} /></div>
-                            <div onClick={toggleCart} className="cursor-pointer">
-                                <FontAwesomeIcon size='xl' icon={faCartShopping} />
-                            </div>
-                            <div>
-                                <Link to={isAuthenticated ? '/dashboard' : '/signin'}>
-                                    <FontAwesomeIcon size='xl' icon={faUser} />
-                                </Link>
-                            </div>
-                        </div> */}
+                       
 
                         <div className="flex gap-6">
                             <div><img className='w-6 hidden' onClick={toggleSearch} src={search} alt="" /></div>

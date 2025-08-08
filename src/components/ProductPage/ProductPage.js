@@ -22,6 +22,9 @@ const ProductPage = ({ toggleCart }) => {
       .then(response => {
         const productData = response.data;
         setProduct(productData);
+
+
+
         setSelectedColor(productData.color[0]); // Default to first color
         setSelectedSize(productData.size[0]); // Default to first size
         setLoading(false);

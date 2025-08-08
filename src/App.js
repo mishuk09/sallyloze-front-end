@@ -63,6 +63,7 @@ function App() {
           <Route path='/signin' element={<SignIn />} />
           <Route path='/signup' element={<SignUp />} />
           <Route path='/dashboard' element={<Dashboard />} />
+          
           <Route path="/product/:id" element={<ProductPage toggleCart={toggleCart} />} />
 
 
