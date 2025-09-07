@@ -23,7 +23,7 @@ const Format = ({ category, breadcrumbText, pageTitle }) => {
 
     // Fetch posts based on category prop
     useEffect(() => {
-        axios.get('https://sneakers-backend-1.onrender.com/posts')
+        axios.get('http://localhost:5000/posts')
             .then(response => {
                 const filteredPosts = response.data.filter(post => post.category === category);
                 setPosts(filteredPosts);
