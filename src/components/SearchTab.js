@@ -11,7 +11,7 @@ const SearchTab = ({ closeSearch }) => {
     useEffect(() => {
         const fetchDefaultItems = async () => {
             try {
-                const response = await fetch('http://localhost:5000/posts');
+                const response = await fetch('https://sneakers-backend-2.onrender.com/posts');
                 const data = await response.json();
                 setDefaultItems(data.slice(0, resultsLimit)); // Fetch and set the first 4 items
             } catch (error) {
@@ -29,7 +29,7 @@ const SearchTab = ({ closeSearch }) => {
         // If the query is not empty, fetch results from the database
         if (searchQuery.trim()) {
             try {
-                const response = await fetch(`http://localhost:5000/posts?q=${searchQuery}`);
+                const response = await fetch(`https://sneakers-backend-2.onrender.com/posts?q=${searchQuery}`);
                 const data = await response.json();
                 setSearchResults(data.slice(0, resultsLimit)); // Set the fetched data as search results (limit to 4)
             } catch (error) {
